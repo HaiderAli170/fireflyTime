@@ -1,35 +1,81 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/admin/login";
+import Dashboard from "./components/Dashboard/dashboard";
+
+import Maindashboard from "./components/mainDashboard.jxs/maindashboard";
+import AddEmployee from "./components/Addemployee/addEmployee";
+import CurrentEMployee from "./components/CurrentEmployee/currentEMployee";
+import EmployDashboard from "./components/EmployeDashboard/employDashboard";
+import Checkin from "./components/EmpCheckin/checkin";
+import MyComponent from "./components/Dashboard/dataaa";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+      {/* admin Routes */}
+        <Routes>
+          <Route path="/" element={<Login />} />
+
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard>
+                <Maindashboard />
+              </Dashboard>
+            }
+          />
+           <Route
+            path="/data"
+            element={
+              <Dashboard>
+                <MyComponent/>
+              </Dashboard>
+            }
+          />
+             <Route
+            path="/addEmployee"
+            element={
+              <Dashboard>
+                <AddEmployee/>
+              </Dashboard>
+            }
+          />
+            <Route
+            path="/currentEmployee"
+            element={
+              <Dashboard>
+                <CurrentEMployee/>
+              </Dashboard>
+            }
+          />
+          {/* admin Routes */}
+
+          {/* Employee ROutess */}
+          <Route
+            path="/employdashboard"
+            element={
+              <Dashboard>
+                <EmployDashboard />
+              </Dashboard>
+            }
+          />
+            <Route
+            path="/checkin"
+            element={
+              <Dashboard>
+                <Checkin/>
+              </Dashboard>
+            }
+          />
+
+          {/* Employee Routes */}
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
